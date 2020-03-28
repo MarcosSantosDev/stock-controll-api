@@ -5,7 +5,15 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 
-mongoose.connect('mongodb://marcosdev:root123@ds253840.mlab.com:53840/nodestore');
+const enviroment = {
+    username: '',
+    password: '',
+    host: '',
+    port: '',
+    database: ''
+}
+// connection params: mongodb://username:password@host:port/database
+mongoose.connect('mongodb://${enviroment.username}:${enviroment.password}@${enviroment.host}:${enviroment.port}/${enviroment.database}');
 
 const ProductSchema = require('./models/product_schema');
 const CustomerSchema = require('./models/customer_schema');
